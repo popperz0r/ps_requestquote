@@ -40,6 +40,7 @@ function  addRequest() {
                         $('div.js-mailalert > span').html('<article class="alert alert-success" role="alert" data-alert="success">'+resp.message+'</article>').show();
                         $('div.js-mailalert > button').hide();
                         $('div.js-mailalert > input[type=email]').hide();
+                        $('div.js-mailalert > input[type=text]').hide();
                         $('div.js-mailalert > #gdpr_consent').hide();
                   }else{
                         $('div.js-mailalert > span').html('<article class="alert alert-danger" role="alert" data-alert="success">'+resp.message+'</article>').show();
