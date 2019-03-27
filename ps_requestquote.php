@@ -61,16 +61,26 @@ class Ps_requestquote extends Module
      */
     public function install()
     {
-        Configuration::updateValue('PS_REQUESTQUOTE_LIVE_MODE', false);
+          if (!parent::install() ||
+              !$this->registerHook('displayProductButtons') ||
+              !$this->registerHook('actionProductOutOfStock') ||
+              !$this->registerHook('registerGDPRConsent') ||
+              !$this->registerHook('actionDeleteGDPRCustomer') ||
+              !$this->registerHook('actionExportGDPRData') ||
+              !$this->registerHook('displayProductAdditionalInfo') ||
+              !$this->registerHook('header') ||
+              !$this->registerHook('backOfficeHeader') ||
+              !$this->registerhook('displayRequestQuote') ||
+              !$this->registerHook('displayHeader')) {
+              return false;
+          }
 
-        return parent::install() &&
-            $this->registerHook('header') &&
-            $this->registerHook('backOfficeHeader');
+        return true;
+
     }
 
     public function uninstall()
     {
-        Configuration::deleteByName('PS_REQUESTQUOTE_LIVE_MODE');
 
         return parent::uninstall();
     }
@@ -161,11 +171,6 @@ class Ps_requestquote extends Module
                         'name' => 'PS_REQUESTQUOTE_ACCOUNT_EMAIL',
                         'label' => $this->l('Email'),
                     ),
-                    array(
-                        'type' => 'password',
-                        'name' => 'PS_REQUESTQUOTE_ACCOUNT_PASSWORD',
-                        'label' => $this->l('Password'),
-                    ),
                 ),
                 'submit' => array(
                     'title' => $this->l('Save'),
@@ -216,5 +221,30 @@ class Ps_requestquote extends Module
     {
         $this->context->controller->addJS($this->_path.'/views/js/front.js');
         $this->context->controller->addCSS($this->_path.'/views/css/front.css');
+    }
+
+    public function hookDisplayRequestQuote($params)
+    {
+        if (0 < $params['product']['quantity'] ||
+            !Configuration::get('PS_STOCK_MANAGEMENT') ||
+            Product::isAvailableWhenOutOfStock($params['product']['out_of_stock']))
+            return;
+
+        $context = Context::getContext();
+        $id_product = (int)$params['product']['id'];
+        $id_product_attribute = $params['product']['id_product_attribute'];
+        $id_customer = (int)$context->customer->id;
+        if ((int)$context->customer->id <= 0)
+            $this->context->smarty->assign('email', 1);
+        elseif (MailAlert::customerHasNotification($id_customer, $id_product, $id_product_attribute, (int)$context->shop->id))
+            return;
+        $this->context->smarty->assign(
+            array(
+                'id_product' => $id_product,
+                'id_product_attribute' => $id_product_attribute,
+                'id_module' => $this->id
+            )
+        );
+        return $this->display(__FILE__, 'product.tpl');
     }
 }

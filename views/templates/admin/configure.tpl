@@ -26,20 +26,22 @@
 <div class="panel">
 	<h3><i class="icon icon-credit-card"></i> {l s='Request Quote' mod='ps_requestquote'}</h3>
 	<p>
-		<strong>{l s='Here is my new generic module!' mod='ps_requestquote'}</strong><br />
-		{l s='Thanks to PrestaShop, now I have a great module.' mod='ps_requestquote'}<br />
-		{l s='I can configure it using the following configuration form.' mod='ps_requestquote'}
+		<strong>{l s='Este módulo foi desenvolvido pelo Tiago da Drible!' mod='ps_requestquote'}</strong><br />
+		{l s='Pode seguir-me no twitter em @popperz0r.' mod='ps_requestquote'}<br />
 	</p>
 	<br />
 	<p>
-		{l s='This module will boost your sales!' mod='ps_requestquote'}
+		{l s='Este módulo cria um formulário de pedido de cotação sempre que um produto não tem stock!' mod='ps_requestquote'}
+	</p>
+	<p>
+		{l s='A sua melhor aplicação é para testar o interesse do público em produtos ainda não disponíveis.' mod='ps_requestquote'}
 	</p>
 </div>
 
 <div class="panel">
 	<h3><i class="icon icon-tags"></i> {l s='Documentation' mod='ps_requestquote'}</h3>
 	<p>
-		&raquo; {l s='You can get a PDF documentation to configure this module' mod='ps_requestquote'} :
+		&raquo; {l s='Brevemente' mod='ps_requestquote'} :
 		<ul>
 			<li><a href="#" target="_blank">{l s='English' mod='ps_requestquote'}</a></li>
 			<li><a href="#" target="_blank">{l s='French' mod='ps_requestquote'}</a></li>
