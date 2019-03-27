@@ -71,7 +71,7 @@ class Ps_RequestQuoteActionsModuleFrontController extends ModuleFrontController
             die(json_encode(
                 array(
                     'error' => true,
-                    'message' => $this->trans('Your e-mail address is invalid', array(), 'Modules.Requestquote.Shop'),
+                    'message' => $this->module->l('Your e-mail address is invalid'),
                 )
             ));
         }
@@ -90,7 +90,7 @@ class Ps_RequestQuoteActionsModuleFrontController extends ModuleFrontController
             die(json_encode(
                 array(
                     'error' => true,
-                    'message' => $this->trans('Please validate your inputs.', array(), 'Modules.Requestquote.Shop'),
+                    'message' => $this->module->l('Please validate your inputs.'),
                 )
             ));
       }
@@ -118,7 +118,7 @@ class Ps_RequestQuoteActionsModuleFrontController extends ModuleFrontController
             die(json_encode(
                 array(
                     'error' => false,
-                    'message' => $this->trans('Your request was registered', array(), 'Modules.Requestquote.Shop'),
+                    'message' => $this->module->l('Your request was registered'),
                 )
             ));
         }
@@ -126,7 +126,7 @@ class Ps_RequestQuoteActionsModuleFrontController extends ModuleFrontController
         die(json_encode(
             array(
                 'error' => true,
-                'message' => $this->trans('Your e-mail address is invalid', array(), 'Modules.Requestquote.Shop'),
+                'message' => $this->module->l('Your e-mail address is invalid'),
             )
         ));
     }
