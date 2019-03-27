@@ -236,8 +236,6 @@ class Ps_requestquote extends Module
         $id_customer = (int)$context->customer->id;
         if ((int)$context->customer->id <= 0)
             $this->context->smarty->assign('email', 1);
-        elseif (MailAlert::customerHasNotification($id_customer, $id_product, $id_product_attribute, (int)$context->shop->id))
-            return;
         $this->context->smarty->assign(
             array(
                 'id_product' => $id_product,

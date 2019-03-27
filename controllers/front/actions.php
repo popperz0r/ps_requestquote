@@ -39,7 +39,6 @@ class Ps_RequestQuoteActionsModuleFrontController extends ModuleFrontController
     {
         parent::init();
 
-        //require_once $this->module->getLocalPath().'MailAlert.php';
         $this->id_product = (int) Tools::getValue('id_product');
         $this->id_product_attribute = (int) Tools::getValue('id_product_attribute');
     }
@@ -85,7 +84,7 @@ class Ps_RequestQuoteActionsModuleFrontController extends ModuleFrontController
 
         //lets validate submission
         if(empty(Tools::getValue('cname')) ||
-            !Validate::isEmail((string)Tools::getValue('customer_email')) ||
+            (!Validate::isEmail((string)Tools::getValue('customer_email')) && !$customer_email) ||
             empty(Tools::getValue('cphone'))
       ){
             die(json_encode(
@@ -119,7 +118,7 @@ class Ps_RequestQuoteActionsModuleFrontController extends ModuleFrontController
             die(json_encode(
                 array(
                     'error' => false,
-                    'message' => $this->trans('Request request was registered', array(), 'Modules.Requestquote.Shop'),
+                    'message' => $this->trans('Your request was registered', array(), 'Modules.Requestquote.Shop'),
                 )
             ));
         }
