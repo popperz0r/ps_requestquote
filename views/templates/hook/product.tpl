@@ -27,19 +27,19 @@
             <div class="row">
                   <div class="col col-md-12 col-lg-8">
                         <form>
-                              <p>{l s='Request us a quote.' d='Modules.Requestquote.Shop'}</p>
+                              <p>{l s='Request us a quote.' mod='ps_requestquote'}</p>
                               <div class="js-mailalert" data-url="{url entity='module' name='ps_requestquote' controller='actions' params=['process' => 'add']}">
-                                    <input name="cname" class="form-control" type="text" placeholder="{l s='Name' d='Modules.Requestquote.Shop'}"/><br />
+                                    <input name="cname" class="form-control" type="text" placeholder="{l s='Name' mod='ps_requestquote'}"/><br />
                                     {if isset($email) AND $email}
-                                    <input name="cemail" class="form-control" type="email" placeholder="{l s='yourr@email.com' d='Modules.Requestquote.Shop'}"/><br />
+                                    <input name="cemail" class="form-control" type="email" placeholder="{l s='yourr@email.com' mod='ps_requestquote'}"/><br />
                                     {/if}
-                                    <input name="cphone" class="form-control" type="text" placeholder="{l s='Phone Number' d='Modules.Requestquote.Shop'}"/><br />
+                                    <input name="cphone" class="form-control" type="text" placeholder="{l s='Phone Number' mod='ps_requestquote'}"/><br />
                                     {if isset($id_module)}
                                     {hook h='displayGDPRConsent' id_module=$id_module}
                                     {/if}
                                     <input type="hidden" value="{$id_product}"/>
                                     <input type="hidden" value="{$id_product_attribute}"/>
-                                    <button class="btn btn-primary" type="submit" rel="nofollow" onclick="return addRequest();">{l s='Request Quote' d='Modules.Requestquote.Shop'}</button>
+                                    <button class="btn btn-primary" type="submit" rel="nofollow" onclick="return addRequest();">{l s='Request Quote' mod='ps_requestquote'}</button>
                                     <span style="display:none;padding:5px"></span>
                               </div>
                         </form>
